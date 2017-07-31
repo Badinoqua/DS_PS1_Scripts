@@ -10,20 +10,22 @@ $DSM_URI = "https://tmlab-ds10.cloudapp.net:4119/webservice/Manager?WSDL"
 $objManager = New-WebServiceProxy -uri $DSM_URI -namespace WebServiceProxy -class DSMClass
 
 
-$DSM_ID = "WebAPI"
-$DSM_PASS = ""
-	try{
-		$sID = $objManager.authenticate($DSM_ID,$DSM_PASS)
-		Remove-Variable DSM_ID
-		Remove-Variable	DSM_PASS
-		Write-Output "[INFO]	Connection to DSM server $DSM_URI was SUCCESSFUL"
-	}
-	catch{
-		Write-Output "[ERROR]	Failed to logon to DSM.	$_"
-		Remove-Variable DSM_ID
-		Remove-Variable	DSM_PASS
-		#Cleanup
-	}
+$DSM_Cred = Get-Credential -Message "Enter DSM Credentials"
+$DSM_ID = $DSM_Cred.GetNetworkCredential().UserName
+$DSM_PASS = $DSM_Cred.GetNetworkCredential().Password
+Write-Host $DSM_ID
+
+try{
+	$sID = $objManager.authenticate($DSM_ID,$DSM_PASS)
+	Remove-Variable DSM_ID
+	Remove-Variable	DSM_PASS
+	Write-Output "[INFO]	Connection to DSM server $DSM_URI was SUCCESSFUL"
+}
+catch{
+	Write-Output "[ERROR]	Failed to logon to DSM.	$_"
+	Remove-Variable DSM_ID
+	Remove-Variable	DSM_PASS
+}
 
 
 
