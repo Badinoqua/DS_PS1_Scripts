@@ -25,10 +25,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Migrate-OSCE_Settings\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="DSM API Test.ps1" />
+    <Compile Include="Migrate-OSCE_Settings\Migrate-OSCE_Settings.ps1" />
     <Compile Include="Script.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Migrate-OSCE_Settings\Migrate-OSCE_Settings_SourceList.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
