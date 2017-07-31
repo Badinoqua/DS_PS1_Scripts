@@ -2,7 +2,7 @@
 # Script.ps1
 #
 Clear
-Get-Host
+Get-Host 
 
 $DSM_URI = "https://ds10:4119/webservice/Manager?WSDL"
 
